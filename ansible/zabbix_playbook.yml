@@ -1,0 +1,10 @@
+- hosts: zabbix_server
+  become: yes
+  roles:
+    - zabbix_server
+
+- hosts: agents
+  become: yes
+  roles:
+    - zabbix_agent
+

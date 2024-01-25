@@ -1,0 +1,19 @@
+---
+- name: Install Zabbix Server
+  apt:
+    name: zabbix-server-mysql
+    state: present
+
+- name: Configure Zabbix server database connection
+  template:
+    src: zabbix_server.conf.j2
+    dest: /etc/zabbix/zabbix_server.conf
+  notify: restart zabbix-server
+
+- name: Ensure Zabbix Server is running
+  service:
+    name: zabbix-server
+    state: started
+    enabled: yes
+
+# Additional tasks
